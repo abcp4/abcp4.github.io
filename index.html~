@@ -15,7 +15,7 @@
     <script type="text/javascript" src="http://api.geoext.org/1.1/script/GeoExt.js"></script>
 
     <!-- Our Application -->
-    <script type="text/javascript" src="worldmap.js"></script>
+    <script type="text/javascript" src="/home/ivan/Projects/SIG/web_app/worldmap.js"></script>
 
   </head>
   <body>
