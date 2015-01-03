@@ -26,10 +26,19 @@ matrix1.mergeNewParams({viewparams: "word:"+startWord});
 olMap = new OpenLayers.Map({
   projection: "EPSG:900913",
   units: "m",
-  layers: [matrix1, osmLayer],
+  layers: [osmLayer],
   center: [-4429687.0, -396947.0],
   zoom: 4
 });
+
+
+//////////////////
+var addRemoveLayer = function() {
+
+            mapPanel.map.addLayer(matrix1);
+        
+    };
+/////////////////
 
 // Take in user input, fire an event when complete
 var textField = new Ext.form.TextField({
@@ -47,7 +56,13 @@ var textField = new Ext.form.TextField({
 // Map panel, with text field embedded in top toolbar
 var mapPanel = new GeoExt.MapPanel({
   title: "OpenGeo Geoescolas Heat Map",
-  tbar: ["Enter a word to map:", textField],
+tbar: [ ["Enter a word to map:", textField],
+     new Ext.Toolbar({
+    items: [
+    {text: 'matrix 1', handler: addRemoveLayer}
+    
+    ]
+})],
   map: olMap
 });
 

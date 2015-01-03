@@ -5,7 +5,7 @@ var startWord = "SAO LUIS";
 var osmLayer = new OpenLayers.Layer.OSM();
 
 // Heat map + point map
-var wmsLayer = new OpenLayers.Layer.WMS("WMS",
+var matrix1 = new OpenLayers.Layer.WMS("WMS",
   // Uncomment below to use your local server
   // "http://localhost:8080/geoserver/wms",
   "http://geoserver-navi1921.rhcloud.com/awesome/wms",
@@ -20,13 +20,13 @@ var wmsLayer = new OpenLayers.Layer.WMS("WMS",
   });
 
 // Start with map of startWord
-wmsLayer.mergeNewParams({viewparams: "word:"+startWord});
+matrix1.mergeNewParams({viewparams: "word:"+startWord});
 
 // Map with projection into (required when mixing base map with WMS)
 olMap = new OpenLayers.Map({
   projection: "EPSG:900913",
   units: "m",
-  layers: [wmsLayer, osmLayer],
+  layers: [osmLayer],
   center: [-4429687.0, -396947.0],
   zoom: 4
 });
@@ -38,7 +38,7 @@ var textField = new Ext.form.TextField({
     specialkey: function(field, e) {
       // Only update the word map when user hits 'enter'
       if (e.getKey() == e.ENTER) {
-        wmsLayer.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix1.mergeNewParams({viewparams: "word:"+field.getValue()});
       }
     }
   }
@@ -47,7 +47,13 @@ var textField = new Ext.form.TextField({
 // Map panel, with text field embedded in top toolbar
 var mapPanel = new GeoExt.MapPanel({
   title: "OpenGeo Geoescolas Heat Map",
-  tbar: ["Enter a word to map:", textField],
+tbar: [ ["Enter a word to map:", textField],
+     new Ext.Toolbar({
+    items: [
+    {text: 'matrix 1', handler: addRemoveLayer}
+    
+    ]
+})],
   map: olMap
 });
 
