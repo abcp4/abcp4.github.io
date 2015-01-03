@@ -50,6 +50,7 @@ olMap = new OpenLayers.Map({
 
 //////////////////
 var addMatrix1Layer = function() {
+document.write (x)
 
             if(x == 0){
             mapPanel.map.addLayer(matrix1);
