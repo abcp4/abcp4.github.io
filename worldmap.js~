@@ -1,6 +1,6 @@
 // Use this word on startup
 var startWord = "SAO LUIS";
-var x = 0;
+
 // Base map
 var osmLayer = new OpenLayers.Layer.OSM();
 
@@ -52,12 +52,12 @@ olMap = new OpenLayers.Map({
 var addMatrix1Layer = function() {
 
 
-            if(x == 0){
+if(mapPanel.map.layers.indexOf(matrix1) == -1) {
             mapPanel.map.addLayer(matrix1);
-            x = 1;
+
             }else{
             mapPanel.map.removeLayer(matrix1);
-            x = 0;           
+
     };
     
 var addMatrix2Layer = function() {
