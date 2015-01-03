@@ -18,9 +18,25 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     opacity: 0.6,
     singleTile: true,
   });
+  
+  
+  var matrix2 = new OpenLayers.Layer.WMS("WMS",
+  // Uncomment below to use your local server
+  // "http://localhost:8080/geoserver/wms",
+  "http://geoserver-navi1921.rhcloud.com/awesome/wms",
+  {
+    format: "image/png8",
+    transparent: true,
+    layers: "awesome:matrix_geoescolas2,awesome:matrix_geoescolas2",
+    styles: "point,heatmap"
+  }, {
+    opacity: 0.6,
+    singleTile: true,
+  });
 
 // Start with map of startWord
 matrix1.mergeNewParams({viewparams: "word:"+startWord});
+matrix2.mergeNewParams({viewparams: "word:"+startWord});
 
 // Map with projection into (required when mixing base map with WMS)
 olMap = new OpenLayers.Map({
@@ -33,10 +49,18 @@ olMap = new OpenLayers.Map({
 
 
 //////////////////
-var addRemoveLayer = function() {
+var addMatrix1Layer = function() {
 
+            mapPanel.map.removeLayer(matrix2);
             mapPanel.map.addLayer(matrix1);
-        
+
+    };
+    
+var addMatrix2Layer = function() {
+
+            mapPanel.map.removeLayer(matrix1);
+            mapPanel.map.addLayer(matrix2);
+            
     };
 /////////////////
 
@@ -59,7 +83,8 @@ var mapPanel = new GeoExt.MapPanel({
 tbar: [ ["Enter a word to map:", textField],
      new Ext.Toolbar({
     items: [
-    {text: 'matrix 1', handler: addRemoveLayer}
+    {text: 'matrix 1', handler: addMatrix1Layer},
+    {text: 'matrix 2', handler: addMatrix2Layer}
     
     ]
 })],
