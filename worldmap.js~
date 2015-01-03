@@ -31,6 +31,15 @@ olMap = new OpenLayers.Map({
   zoom: 4
 });
 
+
+//////////////////
+var addRemoveLayer = function() {
+
+            mapPanel.map.addLayer(matrix1);
+        
+    };
+/////////////////
+
 // Take in user input, fire an event when complete
 var textField = new Ext.form.TextField({
   value: startWord,
