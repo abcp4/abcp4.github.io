@@ -4,6 +4,22 @@ var startWord = "SAO LUIS";
 // Base map
 var osmLayer = new OpenLayers.Layer.OSM();
 
+//layer das escolas
+var wmsLayer = new OpenLayers.Layer.WMS("WMS",
+  // Uncomment below to use your local server
+  // "http://localhost:8080/geoserver/wms",
+  "http://geoserver-navi1921.rhcloud.com/awesome/wms",
+  {
+    format: "image/png8",
+    transparent: true,
+    layers: "awesome:geoescolas",
+    styles: "point"
+  }, {
+    opacity: 0.6,
+    singleTile: true,
+  });
+
+
 // Heat map + point map
 var matrix1 = new OpenLayers.Layer.WMS("WMS",
   // Uncomment below to use your local server
@@ -42,7 +58,7 @@ matrix2.mergeNewParams({viewparams: "word:"+startWord});
 olMap = new OpenLayers.Map({
   projection: "EPSG:900913",
   units: "m",
-  layers: [osmLayer],
+  layers: [wmsLayer,osmLayer],
   center: [-4429687.0, -396947.0],
   zoom: 4
 });
