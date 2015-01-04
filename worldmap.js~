@@ -97,7 +97,7 @@ var textField = new Ext.form.TextField({
     specialkey: function(field, e) {
       // Only update the word map when user hits 'enter'
       if (e.getKey() == e.ENTER) {
-        matrix2.mergeNewParams({viewparams: "word:"+field.getValue()});
+        wmsLayer.mergeNewParams({viewparams: "word:"+field.getValue()});
       }
     }
   }
