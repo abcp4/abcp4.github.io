@@ -29,7 +29,7 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     format: "image/png8",
     transparent: true,
     layers: "awesome:matrix_geoescolas",
-    styles: "heatmap"
+    styles: "heatmap_distance"
   }, {
     opacity: 0.6,
     singleTile: true,
@@ -44,7 +44,7 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     format: "image/png8",
     transparent: true,
     layers: "awesome:matrix_geoescolas2",
-    styles: "heatmap"
+    styles: "heatmap_distance"
   }, {
     opacity: 0.6,
     singleTile: true,

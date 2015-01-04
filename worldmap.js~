@@ -98,6 +98,8 @@ var textField = new Ext.form.TextField({
       // Only update the word map when user hits 'enter'
       if (e.getKey() == e.ENTER) {
         wmsLayer.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix1.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix2.mergeNewParams({viewparams: "word:"+field.getValue()});
       }
     }
   }
