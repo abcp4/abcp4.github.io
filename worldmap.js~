@@ -58,12 +58,18 @@ if(mapPanel.map.layers.indexOf(matrix1) == -1) {
             }else{
             mapPanel.map.removeLayer(matrix1);
 
+    }
     };
     
 var addMatrix2Layer = function() {
 
-            mapPanel.map.removeLayer(matrix1);
+        if(mapPanel.map.layers.indexOf(matrix2) == -1) {
             mapPanel.map.addLayer(matrix2);
+
+            }else{
+            mapPanel.map.removeLayer(matrix2);
+
+    }
             
     };
 /////////////////

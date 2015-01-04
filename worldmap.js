@@ -63,8 +63,13 @@ if(mapPanel.map.layers.indexOf(matrix1) == -1) {
     
 var addMatrix2Layer = function() {
 
-            mapPanel.map.removeLayer(matrix1);
+        if(mapPanel.map.layers.indexOf(matrix2) == -1) {
             mapPanel.map.addLayer(matrix2);
+
+            }else{
+            mapPanel.map.removeLayer(matrix2);
+
+    }
             
     };
 /////////////////
@@ -76,7 +81,7 @@ var textField = new Ext.form.TextField({
     specialkey: function(field, e) {
       // Only update the word map when user hits 'enter'
       if (e.getKey() == e.ENTER) {
-        matrix1.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix2.mergeNewParams({viewparams: "word:"+field.getValue()});
       }
     }
   }
