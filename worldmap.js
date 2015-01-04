@@ -49,25 +49,25 @@ olMap = new OpenLayers.Map({
 
 
 //////////////////
-var addMatrix2Layer = function() {
-
-
-if(mapPanel.map.layers.indexOf(matrix2) == -1) {
-            mapPanel.map.addLayer(matrix2);
-
-            }else{
-            mapPanel.map.removeLayer(matrix2);
-
-    }
-    };
-    
 var addMatrix1Layer = function() {
 
-        if(mapPanel.map.layers.indexOf(matrix1) == -1) {
+
+if(mapPanel.map.layers.indexOf(matrix1) == -1) {
             mapPanel.map.addLayer(matrix1);
 
             }else{
             mapPanel.map.removeLayer(matrix1);
+
+    }
+    };
+    
+var addMatrix2Layer = function() {
+
+        if(mapPanel.map.layers.indexOf(matrix2) == -1) {
+            mapPanel.map.addLayer(matrix2);
+
+            }else{
+            mapPanel.map.removeLayer(matrix2);
 
     }
             
