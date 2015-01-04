@@ -3,6 +3,7 @@ var startWord = "SAO LUIS";
 
 // Base map
 var osmLayer = new OpenLayers.Layer.OSM();
+
 //layer das escolas
 var wmsLayer = new OpenLayers.Layer.WMS("WMS",
   // Uncomment below to use your local server
