@@ -28,8 +28,8 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
   {
     format: "image/png8",
     transparent: true,
-    layers: "awesome:matrix_geoescolas,awesome:matrix_geoescolas",
-    styles: "point,heatmap"
+    layers: "awesome:matrix_geoescolas",
+    styles: "heatmap"
   }, {
     opacity: 0.6,
     singleTile: true,
@@ -43,8 +43,8 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
   {
     format: "image/png8",
     transparent: true,
-    layers: "awesome:matrix_geoescolas2,awesome:matrix_geoescolas2",
-    styles: "point,heatmap"
+    layers: "awesome:matrix_geoescolas2",
+    styles: "heatmap"
   }, {
     opacity: 0.6,
     singleTile: true,
