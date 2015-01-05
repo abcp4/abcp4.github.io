@@ -72,7 +72,7 @@ var matrix10 = new OpenLayers.Layer.WMS("WMS",
                 format: "image/png8",
                 transparent: true,
                 layers: "awesome:matrix_geoescolas",
-                styles: "point"
+                styles: "point_attribute"
                  },{
                 opacity: 0.6,
                 singleTile: true,
@@ -82,7 +82,7 @@ var matrix10 = new OpenLayers.Layer.WMS("WMS",
                 format: "image/png8",
                 transparent: true,
                 layers: "awesome:matrix_geoescolas2",
-                styles: "point"
+                styles: "point_attribute"
                  },{
                 opacity: 0.6,
                 singleTile: true,

@@ -68,12 +68,34 @@ var matrix10 = new OpenLayers.Layer.WMS("WMS",
                 singleTile: true,
   });
   
+  var matrix30 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas",
+                styles: "point"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
+  
+  var matrix31 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas2",
+                styles: "point"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
+  
 
 // Start with map of startWord
 matrix10.mergeNewParams({viewparams: "word:"+startWord});
 matrix20.mergeNewParams({viewparams: "word:"+startWord});
 matrix11.mergeNewParams({viewparams: "word:"+startWord});
 matrix21.mergeNewParams({viewparams: "word:"+startWord});
+matrix30.mergeNewParams({viewparams: "word:"+startWord});
+matrix31.mergeNewParams({viewparams: "word:"+startWord});
 
 
 // Map with projection into (required when mixing base map with WMS)
@@ -137,6 +159,28 @@ var addMatrix21Layer = function() {
             
     };
     
+    var addMatrix30Layer = function() {
+      if(mapPanel.map.layers.indexOf(matrix30) == -1) {
+            mapPanel.map.addLayer(matrix30);
+
+            }else{
+            mapPanel.map.removeLayer(matrix30);
+
+    }
+            
+    };
+    
+    var addMatrix31Layer = function() {
+      if(mapPanel.map.layers.indexOf(matrix31) == -1) {
+            mapPanel.map.addLayer(matrix31);
+
+            }else{
+            mapPanel.map.removeLayer(matrix31);
+
+    }
+            
+    };
+    
     
   
   
@@ -154,6 +198,8 @@ var textField = new Ext.form.TextField({
         matrix20.mergeNewParams({viewparams: "word:"+field.getValue()});
         matrix11.mergeNewParams({viewparams: "word:"+field.getValue()});
         matrix21.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix30.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix31.mergeNewParams({viewparams: "word:"+field.getValue()});
 
       }
     }
@@ -169,7 +215,9 @@ tbar: [ ["Enter a word to map:", textField],
     {text: 'matrix 1 por distancia', handler: addMatrix10Layer},
     {text: 'matrix 2 por distancia', handler: addMatrix20Layer},
     {text: 'matrix 1 por media', handler: addMatrix11Layer},
-    {text: 'matrix 2 por media', handler: addMatrix21Layer}
+    {text: 'matrix 2 por media', handler: addMatrix21Layer},
+    {text: 'matrix 1 pontos', handler: addMatrix30Layer},
+    {text: 'matrix 2 pontos', handler: addMatrix31Layer}
     ]
 })],
   map: olMap
