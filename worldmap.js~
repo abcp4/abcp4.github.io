@@ -29,7 +29,7 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     format: "image/png8",
     transparent: true,
     layers: "awesome:matrix_geoescolas",
-    styles: "heatmap"
+    styles: "heatmap_distance"
   }, {
     opacity: 0.6,
     singleTile: true,
@@ -44,7 +44,7 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     format: "image/png8",
     transparent: true,
     layers: "awesome:matrix_geoescolas2",
-    styles: "heatmap"
+    styles: "heatmap_distance"
   }, {
     opacity: 0.6,
     singleTile: true,
@@ -78,8 +78,7 @@ if(mapPanel.map.layers.indexOf(matrix1) == -1) {
     };
     
 var addMatrix2Layer = function() {
-
-        if(mapPanel.map.layers.indexOf(matrix2) == -1) {
+      if(mapPanel.map.layers.indexOf(matrix2) == -1) {
             mapPanel.map.addLayer(matrix2);
 
             }else{
@@ -88,6 +87,44 @@ var addMatrix2Layer = function() {
     }
             
     };
+    
+  var ConfLayer1 = function(){
+
+  //se o layer matrix 1,2 estiverem ativados ele coloca o msm layer com outro estilo
+        if(mapPanel.map.layers.indexOf(matrix1) != -1) {  
+
+                var wmsLayer2 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas",
+                styles: "heatmap_distance"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
+     olMap.addLayer(wmsLayer2);
+    
+    
+  
+  };
+  
+  if(mapPanel.map.layers.indexOf(matrix2) != -1) {  
+
+                var wmsLayer3 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas",
+                styles: "heatmap_distance"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
+     olMap.addLayer(wmsLayer3);
+    
+    
+  
+  };
+  }
 /////////////////
 
 // Take in user input, fire an event when complete
@@ -111,9 +148,9 @@ var mapPanel = new GeoExt.MapPanel({
 tbar: [ ["Enter a word to map:", textField],
      new Ext.Toolbar({
     items: [
-    {text: 'matrix 1', handler: addMatrix1Layer},
-    {text: 'matrix 2', handler: addMatrix2Layer}
-    
+    {text: 'matrix 1 ', handler: addMatrix1Layer},
+    {text: 'matrix 2 ', handler: addMatrix2Layer},
+    {text: 'distancia/media', handler: ConfLayer}
     ]
 })],
   map: olMap

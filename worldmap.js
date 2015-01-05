@@ -21,9 +21,7 @@ var wmsLayer = new OpenLayers.Layer.WMS("WMS",
 
 
 // Heat map + point map
-var matrix1 = new OpenLayers.Layer.WMS("WMS",
-  // Uncomment below to use your local server
-  // "http://localhost:8080/geoserver/wms",
+var matrix10 = new OpenLayers.Layer.WMS("WMS",
   "http://geoserver-navi1921.rhcloud.com/awesome/wms",
   {
     format: "image/png8",
@@ -36,9 +34,7 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
   });
   
   
-  var matrix2 = new OpenLayers.Layer.WMS("WMS",
-  // Uncomment below to use your local server
-  // "http://localhost:8080/geoserver/wms",
+  var matrix20 = new OpenLayers.Layer.WMS("WMS",
   "http://geoserver-navi1921.rhcloud.com/awesome/wms",
   {
     format: "image/png8",
@@ -49,10 +45,34 @@ var matrix1 = new OpenLayers.Layer.WMS("WMS",
     opacity: 0.6,
     singleTile: true,
   });
+  
+   var matrix11 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas",
+                styles: "heatmap"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
+  
+  
+
+    var matrix21 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
+                format: "image/png8",
+                transparent: true,
+                layers: "awesome:matrix_geoescolas2",
+                styles: "heatmap"
+                 },{
+                opacity: 0.6,
+                singleTile: true,
+  });
 
 // Start with map of startWord
-matrix1.mergeNewParams({viewparams: "word:"+startWord});
-matrix2.mergeNewParams({viewparams: "word:"+startWord});
+matrix10.mergeNewParams({viewparams: "word:"+startWord});
+matrix20.mergeNewParams({viewparams: "word:"+startWord});
+matrix11.mergeNewParams({viewparams: "word:"+startWord});
+matrix21.mergeNewParams({viewparams: "word:"+startWord});
 
 // Map with projection into (required when mixing base map with WMS)
 olMap = new OpenLayers.Map({
@@ -65,29 +85,58 @@ olMap = new OpenLayers.Map({
 
 
 //////////////////
-var addMatrix1Layer = function() {
+var addMatrix10Layer = function(){
 
-
-if(mapPanel.map.layers.indexOf(matrix1) == -1) {
-            mapPanel.map.addLayer(matrix1);
+  if(mapPanel.map.layers.indexOf(matrix10) == -1) {
+            mapPanel.map.addLayer(matrix10);
 
             }else{
-            mapPanel.map.removeLayer(matrix1);
+            mapPanel.map.removeLayer(matrix10);
+
+    }
+    
+    
+  
+  };
+
+var addMatrix11Layer = function() {
+
+
+if(mapPanel.map.layers.indexOf(matrix11) == -1) {
+            mapPanel.map.addLayer(matrix11);
+
+            }else{
+            mapPanel.map.removeLayer(matrix11);
 
     }
     };
     
-var addMatrix2Layer = function() {
-
-        if(mapPanel.map.layers.indexOf(matrix2) == -1) {
-            mapPanel.map.addLayer(matrix2);
+    
+ var addMatrix20Layer = function(){
+if(mapPanel.map.layers.indexOf(matrix20) == -1) {
+            mapPanel.map.addLayer(matrix20);
 
             }else{
-            mapPanel.map.removeLayer(matrix2);
+            mapPanel.map.removeLayer(matrix20);
+
+    }
+  
+  };
+  
+  
+var addMatrix21Layer = function() {
+      if(mapPanel.map.layers.indexOf(matrix21) == -1) {
+            mapPanel.map.addLayer(matrix21);
+
+            }else{
+            mapPanel.map.removeLayer(matrix21);
 
     }
             
     };
+    
+  
+  
 /////////////////
 
 // Take in user input, fire an event when complete
@@ -98,8 +147,10 @@ var textField = new Ext.form.TextField({
       // Only update the word map when user hits 'enter'
       if (e.getKey() == e.ENTER) {
         wmsLayer.mergeNewParams({viewparams: "word:"+field.getValue()});
-        matrix1.mergeNewParams({viewparams: "word:"+field.getValue()});
-        matrix2.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix10.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix20.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix11.mergeNewParams({viewparams: "word:"+field.getValue()});
+        matrix21.mergeNewParams({viewparams: "word:"+field.getValue()});
       }
     }
   }
@@ -111,9 +162,10 @@ var mapPanel = new GeoExt.MapPanel({
 tbar: [ ["Enter a word to map:", textField],
      new Ext.Toolbar({
     items: [
-    {text: 'matrix 1', handler: addMatrix1Layer},
-    {text: 'matrix 2', handler: addMatrix2Layer}
-    
+    {text: 'matrix 1 por distancia', handler: addMatrix10Layer},
+    {text: 'matrix 2 por distancia', handler: addMatrix20Layer},
+    {text: 'matrix 1 por media', handler: addMatrix11Layer},
+    {text: 'matrix 2 por media', handler: addMatrix21Layer}
     ]
 })],
   map: olMap
