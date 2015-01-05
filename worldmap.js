@@ -68,22 +68,13 @@ var matrix10 = new OpenLayers.Layer.WMS("WMS",
                 singleTile: true,
   });
   
-  var matrix12 = new OpenLayers.Layer.WMS("WMS","http://geoserver-navi1921.rhcloud.com/awesome/wms", {
-                format: "image/png8",
-                transparent: true,
-                layers: "awesome:matrix_geoescolas",
-                styles: "point"
-                 },{
-                opacity: 0.6,
-                singleTile: true,
-  });
 
 // Start with map of startWord
 matrix10.mergeNewParams({viewparams: "word:"+startWord});
 matrix20.mergeNewParams({viewparams: "word:"+startWord});
 matrix11.mergeNewParams({viewparams: "word:"+startWord});
 matrix21.mergeNewParams({viewparams: "word:"+startWord});
-//matrix12.mergeNewParams({viewparams: "word:"+startWord});
+
 
 // Map with projection into (required when mixing base map with WMS)
 olMap = new OpenLayers.Map({
@@ -146,16 +137,6 @@ var addMatrix21Layer = function() {
             
     };
     
-    var addMatrix12Layer = function() {
-      if(mapPanel.map.layers.indexOf(matrix12) == -1) {
-            mapPanel.map.addLayer(matrix12);
-
-            }else{
-            mapPanel.map.removeLayer(matrix12);
-
-    }
-            
-    };
     
   
   
@@ -173,7 +154,7 @@ var textField = new Ext.form.TextField({
         matrix20.mergeNewParams({viewparams: "word:"+field.getValue()});
         matrix11.mergeNewParams({viewparams: "word:"+field.getValue()});
         matrix21.mergeNewParams({viewparams: "word:"+field.getValue()});
-       // matrix12.mergeNewParams({viewparams: "word:"+field.getValue()});
+
       }
     }
   }
