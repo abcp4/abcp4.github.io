@@ -13,7 +13,7 @@ var wmsLayer = new OpenLayers.Layer.WMS("WMS",
     format: "image/png8",
     transparent: true,
     layers: "awesome:geoescolas",
-    styles: "point_label"
+    styles: "point"
   }, {
     opacity: 0.6,
     singleTile: true,
